@@ -1,0 +1,87 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "metadata": {},
+   "source": [
+    "# 데이터 전처리(resize)"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "colab": {
+     "base_uri": "https://localhost:8080/"
+    },
+    "id": "ABP4biD9A7VS",
+    "outputId": "2c5c8dd9-717c-431d-a33f-9200375802e3"
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Found 23578 files belonging to 20 classes.\n",
+      "Using 18863 files for training.\n",
+      "Found 23578 files belonging to 20 classes.\n",
+      "Using 4715 files for validation.\n",
+      "['L2_10', 'L2_12', 'L2_15', 'L2_20', 'L2_21', 'L2_24', 'L2_25', 'L2_27', 'L2_3', 'L2_30', 'L2_33', 'L2_34', 'L2_39', 'L2_40', 'L2_41', 'L2_44', 'L2_45', 'L2_46', 'L2_50', 'L2_52']\n"
+     ]
+    }
+   ],
+   "source": [
+    "batch_size = 32\n",
+    "img_height = 180\n",
+    "img_width = 180\n",
+    "\n",
+    "train_ds = tf.keras.preprocessing.image_dataset_from_directory(\n",
+    "  data_dir,\n",
+    "  validation_split=0.2, \n",
+    "  subset=\"training\",\n",
+    "  seed=123,\n",
+    "  image_size=(img_height, img_width),\n",
+    "  batch_size=batch_size)\n",
+    "\n",
+    "val_ds = tf.keras.preprocessing.image_dataset_from_directory(\n",
+    "  data_dir,\n",
+    "  validation_split=0.2,\n",
+    "  subset=\"validation\",\n",
+    "  seed=123,\n",
+    "  image_size=(img_height, img_width),\n",
+    "  batch_size=batch_size)\n",
+    "\n",
+    "class_names=train_ds.class_names\n",
+    "print(class_names)"
+   ]
+  }
+ ],
+ "metadata": {
+  "accelerator": "GPU",
+  "colab": {
+   "collapsed_sections": [],
+   "machine_shape": "hm",
+   "provenance": []
+  },
+  "gpuClass": "premium",
+  "kernelspec": {
+   "display_name": "Python 3",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.6.13"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 1
+}
